@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaUserRepository } from "../../repositories/prisma/PrismaUserRepository";
-import { CreateUserUseCase } from "./CreateUseruseCase";
+import { CreateUserUseCase } from "./CreateUserUseCase";
 
 
 export class CreateUserController {
