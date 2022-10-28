@@ -42,35 +42,43 @@ export class CreateUserUseCase {
 
 		}
 
-		const passwordHash = await hash(password, 8);
+		try {
+			
+			const passwordHash = await hash(password, 8);
 
-		const queryUser: UserData = {
-			data: {
-				name,
-				description,
-				email,
-				password: passwordHash,
-				image,
+			const queryUser: UserData = {
+				data: {
+					name,
+					description,
+					email,
+					password: passwordHash,
+					image,
+				}
 			}
-		}
 
-		const user = await this.userRepository.create(queryUser);
+			const user = await this.userRepository.create(queryUser);
 
-		const token = sign({}, config.secretKey, {
-			subject: user.id,
-			expiresIn: config.expireTime
-		});
+			const token = sign({}, config.secretKey, {
+				subject: user.id,
+				expiresIn: config.expireTime
+			});
 
-		const tokenReturn = {
-			token,
-			user: {
-				id: user.id,
-				created_at: user.created_at,
-				updated_at: user.updated_at,
-				last_login: user.last_login
+			const tokenReturn = {
+				token,
+				user: {
+					id: user.id,
+					created_at: user.created_at,
+					updated_at: user.updated_at,
+					last_login: user.last_login
+				}
 			}
-		}
 
-		return tokenReturn;
+			return tokenReturn;
+
+		} catch (msg) {
+
+			throw new AppError(msg);
+
+		}
 	}
 }

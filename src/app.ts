@@ -1,3 +1,6 @@
+// "scripts": {
+// 	"dev": "npm run build:dev",
+// 	"start:dev": "ts-node-dev --poll --inspect --transpile-only --ignore-watch node_modules --respawn index.ts",
 import "reflect-metadata";
 import "express-async-errors";
 
