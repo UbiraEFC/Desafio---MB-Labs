@@ -9,10 +9,10 @@ import { IUserRepository, UserData } from "../../repositories/IUserRepository";
 
 interface CreateUserRequest {
 	name: string;
-	description: string;
+	description?: string;
 	email: string;
 	password: string;
-	image: string;
+	image?: string;
 }
 
 export class CreateUserUseCase {
