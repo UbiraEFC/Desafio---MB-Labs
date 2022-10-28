@@ -1,0 +1,10 @@
+FROM node:latest
+WORKDIR /usr
+RUN mkdir mblabs
+COPY ./ ./mblabs
+RUN cd ./mblabs
+WORKDIR /usr/mblabs
+RUN ls -ll
+RUN npm install
+EXPOSE 3333
+CMD ["npm","run","dev"]
