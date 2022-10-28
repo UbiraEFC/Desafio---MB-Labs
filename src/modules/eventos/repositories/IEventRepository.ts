@@ -1,6 +1,6 @@
 import { Event } from "@prisma/client";
 
-export interface CreateEventData {
+export interface EventData {
 	data: {
 		title: string;
 		description: string;
@@ -11,15 +11,15 @@ export interface CreateEventData {
 		address: string;
 		start_date: Date;
 		end_date: Date;
-		participants: Number;
+		participants: number;
 		image: string;
 	}
 }
 
 export interface IEventRepository {
-	create(data: CreateEventData): Promise<Event>;
+	create(data: EventData): Promise<Event>;
 	findById(id: string): Promise<Event>;
 	findMany(): Promise<Event[]>;
 	delete(id: string): Promise<void>;
-	update(id: string): Promise<Event>;
+	update(id: string, data: EventData): Promise<Event>;
 }

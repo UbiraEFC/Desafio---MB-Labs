@@ -1,6 +1,6 @@
 import { Institution } from "@prisma/client";
 
-export interface CreateInstitutionData {
+export interface InstitutionData {
 	data: {
 		name: string;
 		description: string;
@@ -11,9 +11,9 @@ export interface CreateInstitutionData {
 }
 
 export interface IInstitutionRepository {
-	create(data: CreateInstitutionData): Promise<Institution>;
+	create(data: InstitutionData): Promise<Institution>;
 	findById(id: string): Promise<Institution>;
 	findMany(): Promise<Institution[]>;
 	delete(id: string): Promise<void>;
-	update(id: string): Promise<Institution>;
+	update(id: string, data: InstitutionData): Promise<Institution>;
 }
