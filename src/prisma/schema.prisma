@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @id @default(uuid())
+  name        String
+  description String?
+  email       String      @unique
+  password    String
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @default(now())
+  last_login  DateTime    @default(now())
+  image       String?
+  UserEvent   UserEvent[]
+
+  @@map("users")
+}
+
+model Institution {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  email       String   @unique
+  password    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  last_login  DateTime @default(now())
+  image       String?
+
+  @@map("institutions")
+}
+
+model UserEvent {
+  id       String @id @default(uuid())
+  user_id  String
+  event_id String
+
+  event Event @relation(fields: [event_id], references: [id])
+  user  User  @relation(fields: [user_id], references: [id])
+
+  @@map("usersevents")
+}
+
+model Event {
+  id             String      @id @default(uuid())
+  title          String
+  description    String?
+  institution_id String
+  speaker        String?
+  online         Boolean
+  price          String
+  address        String
+  created_at     DateTime    @default(now())
+  updated_at     DateTime    @default(now())
+  start_date     DateTime
+  end_date       DateTime
+  participants   Int?
+  image          String?
+  UserEvent      UserEvent[]
+
+  @@map("events")
+}
