@@ -8,28 +8,30 @@ datasource db {
 }
 
 model User {
-  id         String      @id @default(uuid())
-  name       String
-  email      String      @unique
-  password   String
-  created_at DateTime    @default(now())
-  updated_at DateTime    @default(now())
-  last_login DateTime    @default(now())
-  image      String?
-  UserEvent  UserEvent[]
+  id          String      @id @default(uuid())
+  name        String
+  description String?
+  email       String      @unique
+  password    String
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @default(now())
+  last_login  DateTime    @default(now())
+  image       String?
+  UserEvent   UserEvent[]
 
   @@map("users")
 }
 
 model Institution {
-  id         String   @id @default(uuid())
-  name       String
-  email      String   @unique
-  password   String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
-  last_login DateTime @default(now())
-  image      String?
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  email       String   @unique
+  password    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  last_login  DateTime @default(now())
+  image       String?
 
   @@map("institutions")
 }
