@@ -20,6 +20,16 @@ export class PrismaInstitutionRepository implements IInstitutionRepository {
 		return institution;
 	}
 
+	async findByEmail(email: string): Promise<Institution> {
+		const institution = await prismaClient.institution.findUnique({
+			where: {
+				email: email
+			}
+		});
+
+		return institution;
+	}
+
 	async findMany(): Promise<Institution[]> {
 		const institutions = await prismaClient.institution.findMany({
 			where: { }
