@@ -10,7 +10,6 @@ export interface CreateInstitutionData {
 	}
 }
 
-
 export interface IInstitutionRepository {
 	create(data: CreateInstitutionData): Promise<Institution>;
 	findById(id: string): Promise<Institution>;

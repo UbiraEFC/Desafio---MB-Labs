@@ -10,7 +10,6 @@ export interface CreateUserData {
 	}
 }
 
-
 export interface IUserRepository {
 	create(data: CreateUserData): Promise<User>;
 	findById(id: string): Promise<User>;

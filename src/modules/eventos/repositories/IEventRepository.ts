@@ -16,7 +16,6 @@ export interface CreateEventData {
 	}
 }
 
-
 export interface IEventRepository {
 	create(data: CreateEventData): Promise<Event>;
 	findById(id: string): Promise<Event>;
