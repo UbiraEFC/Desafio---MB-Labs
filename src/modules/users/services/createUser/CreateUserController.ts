@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { PrismaUserRepository } from "../../repositories/prisma/PrismaUserRepository";
-import { CreateUserUseCase } from "./CreateUseruseCase";
+import { CreateUserUseCase } from "./CreateUserUseCase";
 
 
-export class CreateUserCobtroller {
+export class CreateUserController {
 	async signUp(request: Request, response: Response): Promise<Response> {
 		const { name, description,  email, password, image } = request.body;
 

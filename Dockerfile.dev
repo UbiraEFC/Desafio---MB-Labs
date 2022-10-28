@@ -7,4 +7,4 @@ WORKDIR /usr/mblabs
 RUN ls -ll
 RUN npm install
 EXPOSE 3333
-CMD ["npm","run","dev"]
+CMD ["npm", "run", "start:dev"]

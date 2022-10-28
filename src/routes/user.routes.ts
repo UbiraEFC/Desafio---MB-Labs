@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { CreateUserCobtroller } from "../modules/users/services/createUser/CreateUserController";
+import { CreateUserController } from "../modules/users/services/createUser/CreateUserController";
 
 
 const userRoutes = Router();
 
-const createUserController = new CreateUserCobtroller();
+const createUserController = new CreateUserController();
 
 userRoutes.post('/signup', createUserController.signUp);
 

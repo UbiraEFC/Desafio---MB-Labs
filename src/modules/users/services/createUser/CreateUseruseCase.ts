@@ -30,10 +30,11 @@ export class CreateUserUseCase {
 
 		try {
 
+			const existEmail = await this.userRepository.findByEmail(email);
 			existsOrError(name, 'Name is required!');
 			existsOrError(email, 'Email is required!');
 			existsOrError(password, 'Password is required!');
-			existsOrError(! await this.userRepository.findByEmail(email), 'Email already exists!');
+			existsOrError(!existEmail, 'Email already exists!');
 
 		} catch (msg) {
 
