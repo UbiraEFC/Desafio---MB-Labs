@@ -3,7 +3,7 @@ import { sign } from "jsonwebtoken";
 import { config } from "../../../../config";
 import { AppError } from "../../../../errors/AppError";
 import { existsOrError } from "../../../../errors/ExistsOrError";
-import { IInstitutionResponseDTO } from "../../dtos/IInstitutionResponseDTO";
+import { IInstitutionResponseTokenDTO } from "../../dtos/IInstitutionResponseTokenDTO";
 import { IInstitutionRepository, InstitutionData } from "../../repositories/IInstitutionRepository";
 
 
@@ -26,7 +26,7 @@ export class CreateInstitutionUseCase {
 		email,
 		password,
 		image
-	}: CreateInstitutionRequest): Promise<IInstitutionResponseDTO> {
+	}: CreateInstitutionRequest): Promise<IInstitutionResponseTokenDTO> {
 
 		try {
 

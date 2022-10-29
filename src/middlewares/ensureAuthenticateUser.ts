@@ -3,13 +3,13 @@ import { verify } from "jsonwebtoken";
 import { config } from "../config";
 import { AppError } from "../errors/AppError";
 import { existsOrError } from "../errors/ExistsOrError";
-import { PrismaInstitutionRepository } from "../modules/institutions/repositories/prisma/PrismaInstitutionRepository";
+import { PrismaUserRepository } from "../modules/users/repositories/prisma/PrismaUserRepository";
 
 interface IPayLoad {
 	id: string;
 }
 
-export async function ensureAuthenticatedInstitution(request: Request, response: Response, next: NextFunction) {
+export async function ensureAuthenticatedUser(request: Request, response: Response, next: NextFunction) {
 
 	const authHeader = request.headers.authorization;
 
@@ -27,12 +27,11 @@ export async function ensureAuthenticatedInstitution(request: Request, response:
 			config.secretKey
 		) as IPayLoad;
 
-		const institutionRepository = new PrismaInstitutionRepository();
-		const institution = await institutionRepository.findById(id);
-		existsOrError(institution, "");
-		request.origin = { id };
+		const userRepository = new PrismaUserRepository();
+		const user = await userRepository.findById(id);
+		existsOrError(user, "");
+		request.origin = { id }
 		return next();
-
 	} catch {
 		throw new AppError("Sessão inválida", 401)
 	}

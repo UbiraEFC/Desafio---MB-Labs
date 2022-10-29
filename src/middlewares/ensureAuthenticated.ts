@@ -3,13 +3,12 @@ import { verify } from "jsonwebtoken";
 import { config } from "../config";
 import { AppError } from "../errors/AppError";
 import { existsOrError } from "../errors/ExistsOrError";
-import { PrismaInstitutionRepository } from "../modules/institutions/repositories/prisma/PrismaInstitutionRepository";
 
 interface IPayLoad {
 	id: string;
 }
 
-export async function ensureAuthenticatedInstitution(request: Request, response: Response, next: NextFunction) {
+export async function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
 
 	const authHeader = request.headers.authorization;
 
@@ -27,10 +26,8 @@ export async function ensureAuthenticatedInstitution(request: Request, response:
 			config.secretKey
 		) as IPayLoad;
 
-		const institutionRepository = new PrismaInstitutionRepository();
-		const institution = await institutionRepository.findById(id);
-		existsOrError(institution, "");
-		request.origin = { id };
+		request.origin = {id};
+
 		return next();
 
 	} catch {

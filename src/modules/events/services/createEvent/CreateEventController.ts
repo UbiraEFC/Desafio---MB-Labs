@@ -42,7 +42,7 @@ export class CreateEventController {
 
 		} catch (error) {
 
-			return response.status(error.statusCode).json({ message: error.message })
+			return response.status(error.statusCode).json({ message: error.message });
 		}
 	}
 }

@@ -1,6 +1,6 @@
-export interface IInstitutionResponseDTO {
+export interface IUserResponseTokenDTO {
 	token: string;
-	institution: {
+	user: {
 		id: string;
 		created_at: Date;
 		updated_at: Date;
