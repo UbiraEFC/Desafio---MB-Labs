@@ -38,11 +38,9 @@ export class PrismaInstitutionRepository implements IInstitutionRepository {
 		return institutions;
 	}
 
-	async delete(id: string): Promise<void> {
-		await prismaClient.institution.delete({
-			where: {
-				id: id
-			}
+	async delete(id: string): Promise<Institution> {
+		return prismaClient.institution.delete({
+			where: { id	}
 		});
 	}
 

@@ -28,11 +28,9 @@ export class PrismaEventRepository implements IEventRepository {
 		return events;
 	}
 
-	async delete(id: string): Promise<void> {
-		await prismaClient.event.delete({
-			where: {
-				id: id
-			}
+	async delete(id: string): Promise<Event> {
+		return prismaClient.event.delete({
+			where: { id	}
 		});
 	}
 

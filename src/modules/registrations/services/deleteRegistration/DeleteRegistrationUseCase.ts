@@ -15,9 +15,12 @@ export class DeleteRegistrationUseCase {
 	async execute({ id, user_id }: IDeleteRegistration): Promise<IRegistrationResponseDTO> {
 		try {
 
-			const registration = await this.registrationRepository.delete(id);
+			const registration = await this.registrationRepository.findById(id);
 
-			if (user_id === registration.user_id) return { registration: { id: registration.id } };
+			if(user_id === registration.user_id) {
+				const registrationDeleted = await this.registrationRepository.delete(id);
+				return { registration: { id: registrationDeleted.id } }
+			}
 			
 			throw new AppError("Unauthotized!", 401);
 
