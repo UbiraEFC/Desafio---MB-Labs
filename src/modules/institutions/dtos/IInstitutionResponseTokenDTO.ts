@@ -1,4 +1,4 @@
-export interface IInstitutionResponseDTO {
+export interface IInstitutionResponseTokenDTO {
 	token: string;
 	institution: {
 		id: string;
