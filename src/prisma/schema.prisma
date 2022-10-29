@@ -32,6 +32,7 @@ model Institution {
   updated_at  DateTime @default(now())
   last_login  DateTime @default(now())
   image       String?
+  Event       Event[]
 
   @@map("institutions")
 }
@@ -41,8 +42,8 @@ model UserEvent {
   user_id  String
   event_id String
 
-  event Event @relation(fields: [event_id], references: [id])
-  user  User  @relation(fields: [user_id], references: [id])
+  event Event @relation(fields: [event_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user  User  @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("usersevents")
 }
@@ -63,6 +64,8 @@ model Event {
   participants   Int?
   image          String?
   UserEvent      UserEvent[]
+
+  institution Institution @relation(fields: [institution_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("events")
 }
