@@ -20,6 +20,6 @@ export interface IEventRepository {
 	create(data: EventData): Promise<Event>;
 	findById(id: string): Promise<Event>;
 	findMany(): Promise<Event[]>;
-	delete(id: string): Promise<void>;
+	delete(id: string): Promise<Event>;
 	update(id: string, data: EventData): Promise<Event>;
 }
