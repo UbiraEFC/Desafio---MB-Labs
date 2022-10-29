@@ -7,7 +7,13 @@ export class PrismaRegistrationRepository implements IRegistrationRepository {
 	async create(data: RegistrationData): Promise<UserEvent> {
 		return prismaClient.userEvent.create(data);
 	}
-	
+
+	async findById(id: string): Promise<UserEvent> {
+		return prismaClient.userEvent.findFirst({
+			where: { id }
+		});
+	}
+
 	async findUsersRegistrations(event_id: string): Promise<UserEvent[]> {
 		return prismaClient.userEvent.findMany({
 			where: { event_id }

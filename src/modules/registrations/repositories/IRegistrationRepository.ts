@@ -9,6 +9,7 @@ export interface RegistrationData {
 
 export interface IRegistrationRepository {
 	create(data: RegistrationData): Promise<UserEvent>;
+	findById(id: string): Promise<UserEvent>;
 	findUsersRegistrations(event_id: string): Promise<UserEvent[]>;
 	delete(id: string): Promise<UserEvent>;
 }
