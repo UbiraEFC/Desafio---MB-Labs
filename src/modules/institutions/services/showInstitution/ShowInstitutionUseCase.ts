@@ -1,4 +1,3 @@
-import { Institution } from "@prisma/client";
 import { AppError } from "../../../../errors/AppError";
 import { existsOrError } from "../../../../errors/ExistsOrError";
 import { IInstitutionResponseDataDTO } from "../../dtos/IInstitutionResponseDataDTO";

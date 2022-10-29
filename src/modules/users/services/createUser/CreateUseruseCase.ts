@@ -3,7 +3,7 @@ import { sign } from "jsonwebtoken";
 import { config } from "../../../../config";
 import { AppError } from "../../../../errors/AppError";
 import { existsOrError } from "../../../../errors/ExistsOrError";
-import { IUserResponseDTO } from "../../dtos/IUserResponseDTO";
+import { IUserResponseTokenDTO } from "../../dtos/IUserResponseTokenDTO";
 import { IUserRepository, UserData } from "../../repositories/IUserRepository";
 
 
@@ -26,7 +26,7 @@ export class CreateUserUseCase {
 		email,
 		password,
 		image
-	}: CreateUserRequest): Promise<IUserResponseDTO> {
+	}: CreateUserRequest): Promise<IUserResponseTokenDTO> {
 
 		try {
 

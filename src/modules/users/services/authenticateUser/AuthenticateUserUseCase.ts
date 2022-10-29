@@ -3,7 +3,7 @@ import { sign } from "jsonwebtoken";
 import { config } from "../../../../config";
 import { AppError } from "../../../../errors/AppError";
 import { existsOrError } from "../../../../errors/ExistsOrError";
-import { IUserResponseDTO } from "../../dtos/IUserResponseDTO";
+import { IUserResponseTokenDTO } from "../../dtos/IUserResponseTokenDTO";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
 interface AuthenticateUserRequest {
@@ -16,7 +16,7 @@ export class AuthenticateUserUseCase {
 		private userRepository: IUserRepository
 	) {}
 
-	async execute({ email, password }: AuthenticateUserRequest): Promise<IUserResponseDTO> {
+	async execute({ email, password }: AuthenticateUserRequest): Promise<IUserResponseTokenDTO> {
 
 		try {
 			existsOrError(email, 'Email is required!');

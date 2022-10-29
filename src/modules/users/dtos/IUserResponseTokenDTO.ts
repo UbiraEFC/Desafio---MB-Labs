@@ -1,4 +1,4 @@
-export interface IUserResponseDTO {
+export interface IUserResponseTokenDTO {
 	token: string;
 	user: {
 		id: string;
