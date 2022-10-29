@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaRegistrationRepository } from "../../repositories/prisma/PrismaRegistrationRepository";
-import { CreateRegistrationUseCase } from "./createResgistrationUseCase";
+import { CreateRegistrationUseCase } from "./CreateResgistrationUseCase";
 
 export class CreateRegistrationController {
 	async create(request: Request, response: Response): Promise<Response> {

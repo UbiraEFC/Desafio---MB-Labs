@@ -22,16 +22,16 @@ export class CreateRegistrationUseCase {
 
 			existsOrError(event_id, 'Event Id is required!');
 
-			const queryResgistration: RegistrationData = {
+			const queryRegistration: RegistrationData = {
 				data: {
 					user_id,
 					event_id
 				}
 			}
 
-			const resgistrationResponse = await this.registrationRepository.create(queryResgistration);
+			const registrationResponse = await this.registrationRepository.create(queryRegistration);
 
-			return { resgistration: { id: resgistrationResponse.id } }
+			return { registration: { id: registrationResponse.id } }
 
 		} catch (error) {
 			throw new AppError(error);

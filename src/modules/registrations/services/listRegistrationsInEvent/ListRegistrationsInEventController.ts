@@ -15,7 +15,7 @@ export class ListRegistrationsInEventController {
 		try {
 
 			const registrationsList = await listRegistrationsInEventUseCase.execute({ event_id });
-			return response.status(200).json({ registration: registrationsList });
+			return response.status(200).json({ registrations: registrationsList });
 
 		} catch (error) {
 

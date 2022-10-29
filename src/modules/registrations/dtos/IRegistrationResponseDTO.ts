@@ -1,5 +1,5 @@
 export interface IRegistrationResponseDTO {
-	resgistration: {
+	registration: {
 		id: String;
 	};
 }

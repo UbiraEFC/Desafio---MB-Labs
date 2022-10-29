@@ -12,7 +12,7 @@ export class ListRegistrationsInEventUseCase {
 	constructor(
 		private registrationsRepository: IRegistrationRepository,
 		private eventRepository: IEventRepository
-	) {}
+	) { }
 
 	async execute({ event_id }: IListRegistrationsRequest): Promise<UserEvent[]> {
 		try {
@@ -20,7 +20,7 @@ export class ListRegistrationsInEventUseCase {
 			const event = await this.eventRepository.findById(event_id);
 			existsOrError(event, "Event not found!");
 			return this.registrationsRepository.findUsersRegistrations(event_id);
-	
+
 		} catch (error) {
 
 			throw new AppError(error);
