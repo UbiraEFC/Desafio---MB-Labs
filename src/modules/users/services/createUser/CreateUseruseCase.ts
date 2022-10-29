@@ -58,8 +58,7 @@ export class CreateUserUseCase {
 
 			const user = await this.userRepository.create(queryUser);
 
-			const token = sign({}, config.secretKey, {
-				subject: user.id,
+			const token = sign({id: user.id, origin: "USER"}, config.secretKey, {
 				expiresIn: config.expireTime
 			});
 
