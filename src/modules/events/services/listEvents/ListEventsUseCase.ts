@@ -12,7 +12,7 @@ export class ListEventsUseCase {
 		try {
 			return this.eventRepository.findMany();
 		} catch (error) {
-			throw new AppError(error.message);
+			throw new AppError(error);
 		}
 	}
 }
