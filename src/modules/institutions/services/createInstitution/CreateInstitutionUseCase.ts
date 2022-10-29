@@ -3,11 +3,11 @@ import { sign } from "jsonwebtoken";
 import { config } from "../../../../config";
 import { AppError } from "../../../../errors/AppError";
 import { existsOrError } from "../../../../errors/ExistsOrError";
-import { IUserResponseDTO } from "../../dtos/IUserResponseDTO";
-import { IUserRepository, UserData } from "../../repositories/IUserRepository";
+import { IInstitutionResponseDTO } from "../../dtos/IInstitutionResponseDTO";
+import { IInstitutionRepository, InstitutionData } from "../../repositories/IInstitutionRepository";
 
 
-interface CreateUserRequest {
+interface CreateInstitutionRequest {
 	name: string;
 	description?: string;
 	email: string;
@@ -15,9 +15,9 @@ interface CreateUserRequest {
 	image?: string;
 }
 
-export class CreateUserUseCase {
+export class CreateInstitutionUseCase {
 	constructor(
-		private userRepository: IUserRepository
+		private institutionRepository: IInstitutionRepository
 	) { }
 
 	async execute({
@@ -26,11 +26,11 @@ export class CreateUserUseCase {
 		email,
 		password,
 		image
-	}: CreateUserRequest): Promise<IUserResponseDTO> {
+	}: CreateInstitutionRequest): Promise<IInstitutionResponseDTO> {
 
 		try {
 
-			const existEmail = await this.userRepository.findByEmail(email);
+			const existEmail = await this.institutionRepository.findByEmail(email);
 			existsOrError(name, 'Name is required!');
 			existsOrError(email, 'Email is required!');
 			existsOrError(password, 'Password is required!');
@@ -46,7 +46,7 @@ export class CreateUserUseCase {
 			
 			const passwordHash = await hash(password, 8);
 
-			const queryUser: UserData = {
+			const queryInstitution: InstitutionData = {
 				data: {
 					name,
 					description,
@@ -56,20 +56,20 @@ export class CreateUserUseCase {
 				}
 			}
 
-			const user = await this.userRepository.create(queryUser);
+			const institution = await this.institutionRepository.create(queryInstitution);
 
 			const token = sign({}, config.secretKey, {
-				subject: user.id,
+				subject: institution.id,
 				expiresIn: config.expireTime
 			});
 
 			const tokenReturn = {
 				token,
-				user: {
-					id: user.id,
-					created_at: user.created_at,
-					updated_at: user.updated_at,
-					last_login: user.last_login
+				institution: {
+					id: institution.id,
+					created_at: institution.created_at,
+					updated_at: institution.updated_at,
+					last_login: institution.last_login
 				}
 			}
 
