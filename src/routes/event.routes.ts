@@ -1,18 +1,18 @@
 import { Router } from "express";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import { ensureAuthenticatedUser } from "../middlewares/ensureAuthenticateUser";
+import { ensureAuthenticatedInstitution } from "../middlewares/ensureAuthenticatedInstitution";
+import { CreateEventController } from "../modules/events/services/createEvent/CreateEventController";
 import { ListEventsController } from "../modules/events/services/listEvents/ListEventsController";
 import { ShowEventController } from "../modules/events/services/showEvent/ShowEventController";
-import { CreateRegistrationController } from "../modules/registrations/services/createRegistration/createResgistrationController";
 
 const eventRoutes = Router();
 
 const listEventsController = new ListEventsController();
 const showEventController = new ShowEventController();
-const createResgistrationController = new CreateRegistrationController();
+const createEventController = new CreateEventController();
 
 eventRoutes.get('/list', listEventsController.list);
+eventRoutes.post('/create', ensureAuthenticatedInstitution, createEventController.create);
 eventRoutes.get('/:id', ensureAuthenticated, showEventController.showEvent);
-eventRoutes.post('/registration/create', ensureAuthenticatedUser, createResgistrationController.create);
 
 export { eventRoutes };
