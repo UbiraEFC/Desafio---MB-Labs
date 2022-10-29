@@ -15,6 +15,6 @@ export interface IInstitutionRepository {
 	findById(id: string): Promise<Institution>;
 	findByEmail(email: string): Promise<Institution>;
 	findMany(): Promise<Institution[]>;
-	delete(id: string): Promise<void>;
+	delete(id: string): Promise<Institution>;
 	update(id: string, data: InstitutionData): Promise<Institution>;
 }
