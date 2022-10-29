@@ -43,7 +43,7 @@ export class CreateInstitutionUseCase {
 		}
 
 		try {
-			
+
 			const passwordHash = await hash(password, 8);
 
 			const queryInstitution: InstitutionData = {
@@ -58,8 +58,7 @@ export class CreateInstitutionUseCase {
 
 			const institution = await this.institutionRepository.create(queryInstitution);
 
-			const token = sign({}, config.secretKey, {
-				subject: institution.id,
+			const token = sign({ id: institution.id, origin: "INSTITUTION" }, config.secretKey, {
 				expiresIn: config.expireTime
 			});
 

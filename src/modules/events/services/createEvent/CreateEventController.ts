@@ -17,8 +17,7 @@ export class CreateEventController {
 			image
 		} = request.body;
 
-		const { id: institution_id } = request.user;
-
+		const { id: institution_id } = request.origin;
 
 		const prismaEventRepository = new PrismaEventRepository();
 		const createEventUseCase = new CreateEventUseCase(prismaEventRepository);

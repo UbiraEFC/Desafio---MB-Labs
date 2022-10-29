@@ -39,8 +39,7 @@ export class AuthenticateUserUseCase {
 			throw new AppError(msg, 401);
 		}
 
-		const token = sign({}, config.secretKey, {
-			subject: user.id,
+		const token = sign({id: user.id, origin: "USER"}, config.secretKey, {
 			expiresIn: config.expireTime
 		});
 

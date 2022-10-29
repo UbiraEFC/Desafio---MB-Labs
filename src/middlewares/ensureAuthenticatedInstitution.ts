@@ -3,10 +3,12 @@ import { verify } from "jsonwebtoken";
 import { config } from "../config";
 import { AppError } from "../errors/AppError";
 import { existsOrError } from "../errors/ExistsOrError";
+import { PrismaInstitutionRepository } from "../modules/institutions/repositories/prisma/PrismaInstitutionRepository";
 import { PrismaUserRepository } from "../modules/users/repositories/prisma/PrismaUserRepository";
 
 interface IPayLoad {
-	sub: string;
+	id: string;
+	origin: string;
 }
 
 export async function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
@@ -22,25 +24,17 @@ export async function ensureAuthenticated(request: Request, response: Response, 
 	const [, token] = authHeader.split(" ");
 
 	try {
-		const { sub: user_id } = verify(
+		const { id } = verify(
 			token,
 			config.secretKey
 		) as IPayLoad;
 
-		const userRepository = new PrismaUserRepository();
-		const user = userRepository.findById(user_id);
+		const institutionRepository = new PrismaInstitutionRepository();
+		const institution = await institutionRepository.findById(id);
+		existsOrError(institution, "");
+		request.origin = { id }
+		return next();
 
-		try {
-			existsOrError(user, "User does not exists!");
-		} catch (msg) {
-			throw new AppError(msg, 401);
-		}
-
-		request.user = {
-			id: user_id
-		}
-
-		next();
 	} catch {
 		throw new AppError("Sessão inválida", 401)
 	}
