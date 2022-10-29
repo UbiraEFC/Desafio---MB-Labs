@@ -30,7 +30,7 @@ export async function ensureAuthenticatedInstitution(request: Request, response:
 		const institutionRepository = new PrismaInstitutionRepository();
 		const institution = await institutionRepository.findById(id);
 		existsOrError(institution, "");
-		request.origin = { id }
+		request.origin = { id };
 		return next();
 
 	} catch {

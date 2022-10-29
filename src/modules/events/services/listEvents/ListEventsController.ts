@@ -12,11 +12,10 @@ export class ListEventsController {
 
 			const eventList = await listEventsUseCase.execute();
 
-			return response.status(201).json(eventList);
+			return response.status(201).json({ events: eventList});
 
 		} catch (error) {
 
-			console.log(JSON.stringify(error));
 			return response.status(error.status || 500).json({ message: error.message });
 		}
 	}

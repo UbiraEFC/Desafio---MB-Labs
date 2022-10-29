@@ -26,6 +26,8 @@ export async function ensureAuthenticated(request: Request, response: Response, 
 			config.secretKey
 		) as IPayLoad;
 
+		request.origin = {id};
+
 		return next();
 
 	} catch {
