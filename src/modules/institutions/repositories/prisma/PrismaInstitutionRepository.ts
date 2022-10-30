@@ -45,13 +45,9 @@ export class PrismaInstitutionRepository implements IInstitutionRepository {
 	}
 
 	async update(id: string, data: InstitutionData): Promise<Institution> {
-		const institution = await prismaClient.institution.update({
-			where: {
-				id: id
-			},
-			data
+		return prismaClient.institution.update({
+			where: { id },
+			...data
 		});
-
-		return institution;
 	}
 }

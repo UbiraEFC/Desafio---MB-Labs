@@ -1,9 +1,9 @@
 import { hash } from "bcryptjs";
 import { AppError } from "../../../../errors/AppError";
 import { existsOrError } from "../../../../errors/ExistsOrError";
-import { IUserRepository, UserData } from "../../repositories/IUserRepository";
+import { IInstitutionRepository, InstitutionData } from "../../repositories/IInstitutionRepository";
 
-interface UpdateUserRequest {
+interface UpdateInstitutionRequest {
 	id: string;
 	name: string;
 	description?: string;
@@ -12,9 +12,9 @@ interface UpdateUserRequest {
 	image?: string;
 }
 
-export class UpdateUserUseCase {
+export class UpdateInstitutionUseCase {
 	constructor(
-		private userRepository: IUserRepository
+		private institutionRepository: IInstitutionRepository
 	) { }
 
 	async execute({
@@ -24,7 +24,7 @@ export class UpdateUserUseCase {
 		email,
 		password,
 		image
-	}: UpdateUserRequest): Promise<void> {
+	}: UpdateInstitutionRequest): Promise<void> {
 
 		try {
 
@@ -32,18 +32,18 @@ export class UpdateUserUseCase {
 			existsOrError(email, 'Email is required!');
 			existsOrError(password, 'Password is required!');
 
-			const user = await this.userRepository.findById(id);
+			const institution = await this.institutionRepository.findById(id);
 
-			if (user.email !== email) {
+			if (institution.email !== email) {
 
-				const existEmail = await this.userRepository.findByEmail(email);
+				const existEmail = await this.institutionRepository.findByEmail(email);
 				existsOrError(!existEmail, 'Email already exists!');
 
 			}
 
 			const passwordHash = await hash(password, 8);
 
-			const queryUser: UserData = {
+			const queryInstitution: InstitutionData = {
 				data: {
 					name,
 					description,
@@ -54,7 +54,7 @@ export class UpdateUserUseCase {
 				}
 			}
 
-			await this.userRepository.update(id, queryUser);
+			await this.institutionRepository.update(id, queryInstitution);
 
 		} catch (error) {
 
