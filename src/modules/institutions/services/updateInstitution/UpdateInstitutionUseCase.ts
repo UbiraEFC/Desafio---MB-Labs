@@ -1,14 +1,12 @@
-import { hash } from "bcryptjs";
 import { AppError } from "../../../../errors/AppError";
 import { existsOrError } from "../../../../errors/ExistsOrError";
-import { IInstitutionRepository, InstitutionData } from "../../repositories/IInstitutionRepository";
+import { IInstitutionRepository, UpdateInstitutionData } from "../../repositories/IInstitutionRepository";
 
 interface UpdateInstitutionRequest {
 	id: string;
 	name: string;
 	description?: string;
 	email: string;
-	password: string;
 	image?: string;
 }
 
@@ -22,15 +20,10 @@ export class UpdateInstitutionUseCase {
 		name,
 		description,
 		email,
-		password,
 		image
 	}: UpdateInstitutionRequest): Promise<void> {
 
 		try {
-
-			existsOrError(name, 'Name is required!');
-			existsOrError(email, 'Email is required!');
-			existsOrError(password, 'Password is required!');
 
 			const institution = await this.institutionRepository.findById(id);
 
@@ -41,14 +34,11 @@ export class UpdateInstitutionUseCase {
 
 			}
 
-			const passwordHash = await hash(password, 8);
-
-			const queryInstitution: InstitutionData = {
+			const queryInstitution: UpdateInstitutionData = {
 				data: {
 					name,
 					description,
 					email,
-					password: passwordHash,
 					image,
 					updated_at: new Date(),
 				}

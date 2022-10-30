@@ -5,9 +5,7 @@ import { UserData, IUserRepository } from "../IUserRepository";
 
 export class PrismaUserRepository implements IUserRepository {
 	async create(data: UserData): Promise<User> {
-		const user = await prismaClient.user.create(data);
-
-		return user;
+		return prismaClient.user.create(data);
 	}
 
 	async findById(id: string): Promise<User> {

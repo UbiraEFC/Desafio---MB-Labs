@@ -4,7 +4,7 @@ import { UpdateInstitutionUseCase } from "./UpdateInstitutionUseCase";
 
 export class UpdateInstitutionController {
 	async update(request: Request, response: Response): Promise<Response> {
-		const { name, description, email, password, image } = request.body;
+		const { name, description, email, image } = request.body;
 		const { id } = request.origin;
 
 		const prismaInstitutionRepository = new PrismaInstitutionRepository();
@@ -16,8 +16,7 @@ export class UpdateInstitutionController {
 				id, 
 				name, 
 				description,  
-				email, 
-				password, 
+				email,  
 				image
 			})
 

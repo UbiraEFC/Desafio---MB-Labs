@@ -11,11 +11,21 @@ export interface InstitutionData {
 	}
 }
 
+export interface UpdateInstitutionData {
+	data: {
+		name: string;
+		description: string;
+		email: string;
+		image: string;
+		updated_at?: Date;
+	}
+}
+
 export interface IInstitutionRepository {
 	create(data: InstitutionData): Promise<Institution>;
 	findById(id: string): Promise<Institution>;
 	findByEmail(email: string): Promise<Institution>;
 	findMany(): Promise<Institution[]>;
 	delete(id: string): Promise<Institution>;
-	update(id: string, data: InstitutionData): Promise<Institution>;
+	update(id: string, data: UpdateInstitutionData): Promise<Institution>;
 }
