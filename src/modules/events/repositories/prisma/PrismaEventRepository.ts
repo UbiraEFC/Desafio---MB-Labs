@@ -5,27 +5,19 @@ import { EventData, IEventRepository } from "../IEventRepository";
 
 export class PrismaEventRepository implements IEventRepository {
 	async create(data: EventData): Promise<Event> {
-		const event = await prismaClient.event.create(data);
-
-		return event;
+		return prismaClient.event.create(data);
 	}
 
 	async findById(id: string): Promise<Event> {
-		const event = await prismaClient.event.findFirst({
-			where: {
-				id: id
-			}
+		return prismaClient.event.findFirst({
+			where: { id }
 		});
-
-		return event;
 	}
 
 	async findMany(): Promise<Event[]> {
-		const events = await prismaClient.event.findMany({
+		return prismaClient.event.findMany({
 			where: { }
 		});
-
-		return events;
 	}
 
 	async delete(id: string): Promise<Event> {
@@ -35,13 +27,9 @@ export class PrismaEventRepository implements IEventRepository {
 	}
 
 	async update(id: string, data: EventData): Promise<Event> {
-		const event = await prismaClient.event.update({
-			where: {
-				id: id
-			},
-			data
+		return prismaClient.event.update({
+			where: { id },
+			...data
 		});
-
-		return event;
 	}
 }

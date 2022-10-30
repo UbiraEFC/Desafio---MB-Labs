@@ -13,6 +13,7 @@ export interface EventData {
 		end_date: Date;
 		participants: number;
 		image: string;
+		updated_at?: Date,
 	}
 }
 
