@@ -7,6 +7,7 @@ export interface UserData {
 		email: string;
 		password: string;
 		image: string;
+		updated_at?: Date,
 	}
 }
 
