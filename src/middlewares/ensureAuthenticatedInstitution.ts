@@ -3,7 +3,7 @@ import { verify } from "jsonwebtoken";
 import { config } from "../config";
 import { AppError } from "../errors/AppError";
 import { existsOrError } from "../errors/ExistsOrError";
-import { PrismaInstitutionRepository } from "../modules/institutions/repositories/prisma/PrismaInstitutionRepository";
+import { InstitutionRepository } from "../modules/institutions/repositories/InstitutionRepository";
 
 interface IPayLoad {
 	id: string;
@@ -27,7 +27,7 @@ export async function ensureAuthenticatedInstitution(request: Request, response:
 			config.secretKey
 		) as IPayLoad;
 
-		const institutionRepository = new PrismaInstitutionRepository();
+		const institutionRepository = new InstitutionRepository();
 		const institution = await institutionRepository.findById(id);
 		existsOrError(institution, "");
 		request.origin = { id };
