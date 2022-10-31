@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { RegistrationRepository } from "../../repositories/RegistrationRepository";
-import { CreateRegistrationUseCase } from "./CreateResgistrationUseCase";
+import { CreateRegistrationUseCase } from "./CreateRegistrationUseCase";
 
 export class CreateRegistrationController {
 	async create(request: Request, response: Response): Promise<Response> {

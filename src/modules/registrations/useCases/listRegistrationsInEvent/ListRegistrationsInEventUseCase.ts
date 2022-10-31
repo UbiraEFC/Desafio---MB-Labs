@@ -16,7 +16,7 @@ export class ListRegistrationsInEventUseCase {
 			const event = await this.eventRepository.findById(event_id);
 			existsOrError(event, "Event not found!");
 
-			return this.registrationsRepository.findUsersRegistrations(event_id);
+			return await this.registrationsRepository.findUsersRegistrations(event_id);
 		} catch (error) {
 			if(error.statusCode) throw error;
 			throw new AppError(error.message);
