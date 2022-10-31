@@ -22,8 +22,8 @@ export class UpdateInstitutionUseCase {
 			const institution = await this.institutionRepository.findById(id);
 
 			if (institution.email !== email) {
-				const existEmail = await this.institutionRepository.findByEmail(email);
-				existsOrError(!existEmail, 'Email already exists!');
+				const institutionFinded = await this.institutionRepository.findByEmail(email);
+				existsOrError(!institutionFinded, 'Email already exists!');
 			}
 
 			const queryInstitution: UpdateInstitutionDataDTO = {

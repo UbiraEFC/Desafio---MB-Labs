@@ -15,7 +15,7 @@ export class ShowEventUseCase {
 			existsOrError(event, "Event not found!");
 			return event;
 		} catch (error) {
-			if(error.statusCode) throw error;
+			//if(error.statusCode) throw error;
 			throw new AppError(error.message);
 		}
 	}

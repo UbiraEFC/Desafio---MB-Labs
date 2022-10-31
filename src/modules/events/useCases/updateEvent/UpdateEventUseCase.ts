@@ -31,7 +31,7 @@ export class UpdateEventUseCase {
 			existsOrError(event, "Event does not exist!");
 
 			if (event.institution_id !== id) {
-				throw new AppError("Unauthorized", 401);
+				throw new AppError("Unauthorized!", 401);
 			}
 
 			const queryEvent: EventDataDTO = {

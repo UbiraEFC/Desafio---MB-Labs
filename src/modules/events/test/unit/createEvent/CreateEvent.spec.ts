@@ -1,7 +1,7 @@
 import { CreateEventUseCase } from '../../../useCases/createEvent/CreateEventUseCase';
-import { EventRepository } from '../../mockRepositories/EventRepository';
+import { EventRepository } from '../../mocks/EventRepository';
 
-describe('Create User', () => {
+describe('Create Event', () => {
 
 	let eventRepository: EventRepository;
 	let createEventUseCase: CreateEventUseCase;

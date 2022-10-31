@@ -9,7 +9,7 @@ export class ListEventsUseCase {
 
 	async execute(): Promise<Event[]> {
 		try {
-			return this.eventRepository.findMany();
+			return await this.eventRepository.findMany();
 		} catch (error) {
 			if(error.statusCode) throw error;
 			throw new AppError(error.message);
