@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import { ensureAuthenticatedInstitution } from "../middlewares/ensureAuthenticatedInstitution";
-import { CreateEventController } from "../modules/events/services/createEvent/CreateEventController";
-import { DeleteEventController } from "../modules/events/services/deleteEvent/DeleteEventController";
-import { ListEventsController } from "../modules/events/services/listEvents/ListEventsController";
-import { ShowEventController } from "../modules/events/services/showEvent/ShowEventController";
-import { UpdateEventController } from "../modules/events/services/updateEvent/UpdateEventController";
+import { CreateEventController } from "../modules/events/useCases/createEvent/CreateEventController";
+import { DeleteEventController } from "../modules/events/useCases/deleteEvent/DeleteEventController";
+import { ListEventsController } from "../modules/events/useCases/listEvents/ListEventsController";
+import { ShowEventController } from "../modules/events/useCases/showEvent/ShowEventController";
+import { UpdateEventController } from "../modules/events/useCases/updateEvent/UpdateEventController";
 
 const eventRoutes = Router();
 

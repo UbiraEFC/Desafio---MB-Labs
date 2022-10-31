@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { AuthenticateInstitutionController } from "../modules/institutions/services/authenticateInstitution/AuthenticateInstitutionController";
-import { CreateInstitutionController } from "../modules/institutions/services/createInstitution/CreateInstitutionController";
-import { ShowInstitutionController } from "../modules/institutions/services/showInstitution/ShowInstitutionController";
+import { AuthenticateInstitutionController } from "../modules/institutions/useCases/authenticateInstitution/AuthenticateInstitutionController";
+import { CreateInstitutionController } from "../modules/institutions/useCases/createInstitution/CreateInstitutionController";
+import { ShowInstitutionController } from "../modules/institutions/useCases/showInstitution/ShowInstitutionController";
 import { ensureAuthenticatedInstitution } from "../middlewares/ensureAuthenticatedInstitution";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import { DeleteInstitutionController } from "../modules/institutions/services/deleteInstitution/DeleteInstitutionController";
-import { UpdateInstitutionController } from "../modules/institutions/services/updateInstitution/UpdateInstitutionController";
+import { DeleteInstitutionController } from "../modules/institutions/useCases/deleteInstitution/DeleteInstitutionController";
+import { UpdateInstitutionController } from "../modules/institutions/useCases/updateInstitution/UpdateInstitutionController";
 
 const institutionRoutes = Router();
 
