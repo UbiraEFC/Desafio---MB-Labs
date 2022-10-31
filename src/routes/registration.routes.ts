@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { ensureAuthenticatedInstitution } from "../middlewares/ensureAuthenticatedInstitution";
 import { ensureAuthenticatedUser } from "../middlewares/ensureAuthenticateUser";
-import { CreateRegistrationController } from "../modules/registrations/useCases/createRegistration/CreateResgistrationController";
+import { CreateRegistrationController } from "../modules/registrations/useCases/createRegistration/CreateRegistrationController";
 import { DeleteRegistrationController } from "../modules/registrations/useCases/deleteRegistration/DeleteRegistrationController";
 import { ListRegistrationsInEventController } from "../modules/registrations/useCases/listRegistrationsInEvent/ListRegistrationsInEventController";
 
