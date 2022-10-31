@@ -34,13 +34,14 @@ export class UpdateUserUseCase {
 					image,
 					updated_at: new Date(),
 				}
-			}
+			};
 
 			await this.userRepository.update(id, queryUser);
 
 			return { message: "Updated records!" };
 		} catch (error) {
-			throw new AppError(error);
+			if (error.statusCode) throw error;
+			throw new AppError(error.message);
 		}
 	}
 }

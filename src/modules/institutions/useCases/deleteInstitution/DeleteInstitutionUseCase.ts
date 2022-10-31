@@ -20,7 +20,8 @@ export class DeleteInstitutionUseCase {
 
 			return { institution: { id: institutionDeleted.id } }
 		} catch (error) {
-			throw new AppError(error);
+			if(error.statusCode) throw error;
+			throw new AppError(error.message);
 		}
 	}
 }

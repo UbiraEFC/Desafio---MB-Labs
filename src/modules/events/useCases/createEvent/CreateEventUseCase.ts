@@ -35,7 +35,7 @@ export class CreateEventUseCase {
 				throw new AppError("Online is required!", 400);
 			}
 
-			if (!online) existsOrError(participants, "Number of participants is riquered!");
+			if (!online) existsOrError(participants, "Number of participants is required!");
 
 			const queryEvent: EventDataDTO = {
 				data: {
@@ -62,11 +62,12 @@ export class CreateEventUseCase {
 					start_date: eventResponse.start_date,
 					end_date: eventResponse.end_date,
 				}
-			}
+			};
 
 			return eventReturn;
-		} catch (msg) {
-			throw new AppError(msg);
+		} catch (error) {
+			if(error.statusCode) throw error;
+			throw new AppError(error.message);
 		}
 	}
 }

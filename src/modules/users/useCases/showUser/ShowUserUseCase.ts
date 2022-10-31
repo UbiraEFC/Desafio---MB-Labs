@@ -21,11 +21,12 @@ export class ShowUserUseCase {
 					email: user.email,
 					image: user.image,
 				}
-			}
+			};
 
 			return userResponse;
 		} catch (error) {
-			throw new AppError(error);
+			if(error.statusCode) throw error;
+			throw new AppError(error.message);
 		}
 	}
 }

@@ -29,7 +29,8 @@ export class CreateRegistrationUseCase {
 
 			return { registration: { id: registrationResponse.id } }
 		} catch (error) {
-			throw new AppError(error);
+			if(error.statusCode) throw error;
+			throw new AppError(error.message);
 		}
 	}
 }

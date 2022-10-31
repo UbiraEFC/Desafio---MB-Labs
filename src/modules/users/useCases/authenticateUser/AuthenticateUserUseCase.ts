@@ -36,11 +36,12 @@ export class AuthenticateUserUseCase {
 					updated_at: user.updated_at,
 					last_login: user.last_login
 				}
-			}
+			};
 			
 			return tokenReturn;
 		} catch (error) {
-			throw new AppError(error)
+			if(error.statusCode) throw error;
+			throw new AppError(error.message);
 		}
 	}
 }

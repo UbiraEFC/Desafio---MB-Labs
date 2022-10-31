@@ -58,8 +58,9 @@ export class CreateInstitutionUseCase {
 			}
 
 			return tokenReturn;
-		} catch (msg) {
-			throw new AppError(msg);
+		} catch (error) {
+			if(error.statusCode) throw error;
+			throw new AppError(error.message);
 		}
 	}
 }

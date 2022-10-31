@@ -39,7 +39,8 @@ export class AuthenticateInstitutionUseCase {
 			}
 			return tokenReturn;
 		} catch (error) {
-			throw new AppError(error);
+			if(error.statusCode) throw error;
+			throw new AppError(error.message);
 		}
 	}
 }

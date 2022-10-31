@@ -20,7 +20,8 @@ export class DeleteRegistrationUseCase {
 
 			return { registration: { id: registrationDeleted.id } };
 		} catch (error) {
-			throw new AppError(error);
+			if(error.statusCode) throw error;
+			throw new AppError(error.message);
 		}
 	}
 }
