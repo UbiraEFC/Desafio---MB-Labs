@@ -29,10 +29,11 @@ services:
       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
     ports:
       - 3333:3333
-    external_links:
+    links:
       - postgres
     depends_on:
       - postgres
 volumes:
   pgdata:
+    name: pgdata
     driver: local

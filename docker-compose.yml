@@ -8,5 +8,7 @@ services:
     container_name: mblabs
     external_links:
       - postgres
+    links:
+      - postgres
     depends_on:
       - postgres
